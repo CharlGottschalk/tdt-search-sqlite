@@ -1,0 +1,37 @@
+{
+  "contract_version": 2,
+  "id": "dryft-search-sqlite",
+  "version": "0.1.0",
+  "description": "Offline sqlite search over approved brain notes.",
+  "author": "Dryft",
+  "license": "Apache-2.0",
+  "skills": [],
+  "hooks": [],
+  "knowledge": [],
+  "docs": [
+    "docs/usage.md"
+  ],
+  "compatibility": {
+    "dryft": "0.1",
+    "platforms": [
+      "linux-x86_64"
+    ],
+    "python": [
+      "3.12"
+    ]
+  },
+  "capabilities": [
+    {
+      "name": "brain.search",
+      "interface_version": 1,
+      "entrypoint": "assets/provider.py"
+    }
+  ],
+  "assets": [
+    {
+      "path": "assets/provider.py",
+      "sha256": "2e39e41810bf227f3636139b1f95b8a4d3b1128decb7f396854ca1c2cf090ec9",
+      "size": 2199
+    }
+  ]
+}
