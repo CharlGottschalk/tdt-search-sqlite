@@ -1,7 +1,7 @@
 {
   "contract_version": 2,
   "id": "tdt-search-sqlite",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Offline sqlite search over approved brain notes.",
   "author": "ThisDamnThing",
   "license": "Apache-2.0",
@@ -36,9 +36,6 @@
   ],
   "marketplace": {
     "extension_type": "functionality",
-    "categories": [
-      "search"
-    ],
     "tags": [
       "sqlite",
       "offline"
@@ -59,7 +56,7 @@
         "required": true,
         "purpose": "Validate and install the stack; provide workspace commands and contracts.",
         "setup_url": "https://usethisdamnthing.com/docs",
-        "version_constraint": null,
+        "version_constraint": ">=0.1.1",
         "authentication_required": false,
         "payment_required": false
       },

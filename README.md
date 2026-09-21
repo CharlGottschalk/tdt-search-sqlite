@@ -26,7 +26,7 @@ support; installing Python and FTS5 alone does not change that declaration.
 
 ## Release status
 
-Candidate version: **0.1.1**. Canonical source: [CharlGottschalk/tdt-search-sqlite](https://github.com/CharlGottschalk/tdt-search-sqlite).
+Candidate version: **0.1.2**. Canonical source: [CharlGottschalk/tdt-search-sqlite](https://github.com/CharlGottschalk/tdt-search-sqlite).
 The registry commands below are the planned public installation path; production
 listing and installation are still awaiting release verification.
 
@@ -63,3 +63,6 @@ See the [usage guide](docs/usage.md) to build the index and start searching.
 Licensed under the [Apache License 2.0](LICENSE). Copyright Charl Gottschalk.
 
 Bundled third-party components retain their respective licenses and notices.
+
+This candidate requires ThisDamnThing 0.1.1 or newer for category-free marketplace
+manifests. Existing published releases keep their original requirements.
