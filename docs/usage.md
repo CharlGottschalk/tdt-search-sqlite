@@ -6,12 +6,12 @@ to your layout. Commands without `--workspace` run from the workspace root.
 
 SQLite Search adds ranked full-text search over approved brain notes. It indexes
 note titles and contents with SQLite FTS5 and ranks matches using BM25, with more
-weight given to title matches. [Dryft](https://usedryft.com) returns current Markdown evidence for the
+weight given to title matches. [ThisDamnThing](https://usethisdamnthing.com) returns current Markdown evidence for the
 matching notes.
 
 ## Requirements
 
-[Dryft](https://usedryft.com) must run under Python 3.12, with FTS5 support in that interpreter's
+[ThisDamnThing](https://usethisdamnthing.com) must run under Python 3.12, with FTS5 support in that interpreter's
 `sqlite3` module. The provider uses Python's standard library;
 it does not bundle a separate database server, model or third-party Python runtime.
 
@@ -19,15 +19,15 @@ it does not bundle a separate database server, model or third-party Python runti
 
 The provider itself uses portable Python APIs, but the current stack manifest
 lists Linux x86_64 only. Windows support needs a compatible release with an
-updated platform declaration and verification. This is separate from [Dryft](https://usedryft.com) core
+updated platform declaration and verification. This is separate from [ThisDamnThing](https://usethisdamnthing.com) core
 platform support. The Python/FTS5 dependency check applies on Windows too; use the
-Python executable from [Dryft](https://usedryft.com)'s environment.
+Python executable from [ThisDamnThing](https://usethisdamnthing.com)'s environment.
 
 ## Dependency setup
 
-[Dryft](https://usedryft.com) launches providers with its own Python interpreter. Installing Python 3.12
-alongside a [Dryft](https://usedryft.com) installation that uses another version does not switch [Dryft](https://usedryft.com)
-to 3.12. Select Python 3.12 when installing [Dryft](https://usedryft.com); for an existing installation,
+[ThisDamnThing](https://usethisdamnthing.com) launches providers with its own Python interpreter. Installing Python 3.12
+alongside a [ThisDamnThing](https://usethisdamnthing.com) installation that uses another version does not switch [ThisDamnThing](https://usethisdamnthing.com)
+to 3.12. Select Python 3.12 when installing [ThisDamnThing](https://usethisdamnthing.com); for an existing installation,
 check its environment before changing anything. For pipx installations,
 `pipx list` shows the Python version used by each application.
 
@@ -46,7 +46,7 @@ python3.12 --version
 python3.12 -c 'import sqlite3; db = sqlite3.connect(":memory:"); db.execute("CREATE VIRTUAL TABLE probe USING fts5(body)"); print("FTS5 available")'
 ```
 
-Repeat the FTS5 check with the interpreter in [Dryft](https://usedryft.com)'s environment if it differs
+Repeat the FTS5 check with the interpreter in [ThisDamnThing](https://usethisdamnthing.com)'s environment if it differs
 from `python3.12`. Expect Python 3.12 and `FTS5 available`. The check uses an
 in-memory database and writes no files.
 
@@ -57,21 +57,21 @@ provides the system library, but a custom Python build may use a different SQLit
 If the check fails, use a Python 3.12 build linked to an SQLite build with
 [FTS5 enabled](https://www.sqlite.org/fts5.html#building_fts5_as_part_of_sqlite).
 Installing the SQLite CLI or a pip package does not enable FTS5 in the interpreter
-[Dryft](https://usedryft.com) already uses. No database server is needed.
+[ThisDamnThing](https://usethisdamnthing.com) already uses. No database server is needed.
 
 ## Install from the registry
 
-In your workspace's agent session, invoke `/dryft-install-stack` in Claude or
-`$dryft-install-stack` in Codex and ask to install `dryft-search-sqlite`. The skill
+In your workspace's agent session, invoke `/tdt-install-stack` in Claude or
+`$tdt-install-stack` in Codex and ask to install `tdt-search-sqlite`. The skill
 searches the marketplace, inspects the release and guides installation.
 
 For the same flow in the CLI:
 
 ```sh
-dryft marketplace search "sqlite search"
-dryft stack install dryft-search-sqlite --inspect
-dryft --workspace ./workspace stack install dryft-search-sqlite --trust-executable SHA256
-dryft --workspace ./workspace brain providers
+tdt marketplace search "sqlite search"
+tdt stack install tdt-search-sqlite --inspect
+tdt --workspace ./workspace stack install tdt-search-sqlite --trust-executable SHA256
+tdt --workspace ./workspace brain providers
 ```
 
 Review the source, version, provider code, platform requirements and any listed
@@ -81,18 +81,18 @@ If the listing requires prerequisite confirmation, verify it and supply the
 corresponding `--confirm-prerequisite TYPE:REF` flags. Select a particular release
 with `--version VERSION` on both inspection and installation.
 
-Registry installation requires network access. [Dryft](https://usedryft.com) downloads and validates the
+Registry installation requires network access. [ThisDamnThing](https://usethisdamnthing.com) downloads and validates the
 release, including the provider's size and hash. Installation does not run the
 provider or build an index. When invoked, the provider retains your OS access;
 a subprocess is not a security sandbox.
 
 ## Build the index
 
-Run the following commands from your [Dryft](https://usedryft.com) workspace, or add
-`--workspace ./workspace` after `dryft` when working elsewhere:
+Run the following commands from your [ThisDamnThing](https://usethisdamnthing.com) workspace, or add
+`--workspace ./workspace` after `tdt` when working elsewhere:
 
 ```sh
-dryft brain index --provider dryft-search-sqlite
+tdt brain index --provider tdt-search-sqlite
 ```
 
 Only approved notes are indexed. After adding, approving, editing or removing
@@ -102,7 +102,7 @@ changed entries and removes deleted ones, leaving unchanged entries intact.
 To discard the cache and build a fresh index:
 
 ```sh
-dryft brain index --provider dryft-search-sqlite --rebuild
+tdt brain index --provider tdt-search-sqlite --rebuild
 ```
 
 The SQLite index is a disposable core-managed cache. Your Markdown files remain
@@ -111,7 +111,7 @@ authoritative; do not edit the database directly.
 ## Search your notes
 
 ```sh
-dryft brain search "deployment recovery" --provider dryft-search-sqlite
+tdt brain search "deployment recovery" --provider tdt-search-sqlite
 ```
 
 Use ordinary words. The provider takes up to 50 word tokens and searches for any
@@ -127,14 +127,14 @@ Installing this stack does not change ordinary literal search. Omit the provider
 to use it:
 
 ```sh
-dryft brain search "deployment"
+tdt brain search "deployment"
 ```
 
 If Semantic Search is also installed and indexed, combine the rankings by
 repeating `--provider`:
 
 ```sh
-dryft brain search "deployment recovery" --provider dryft-search-sqlite --provider dryft-search-semantic
+tdt brain search "deployment recovery" --provider tdt-search-sqlite --provider tdt-search-semantic
 ```
 
 Index each selected provider first. Indexing and querying run locally on demand,
@@ -145,7 +145,7 @@ without network calls, downloads, dependency installation or background services
 Inspect a newer release before approving an update:
 
 ```sh
-dryft stack update dryft-search-sqlite --check
+tdt stack update tdt-search-sqlite --check
 ```
 
 Review the plan and new executable content, then approve through the interactive
@@ -156,7 +156,7 @@ before searching.
 To remove the stack:
 
 ```sh
-dryft stack remove dryft-search-sqlite
+tdt stack remove tdt-search-sqlite
 ```
 
 Removal deletes unchanged owned cache files and preserves your brain notes.
@@ -165,7 +165,7 @@ and restore the recorded originals before retrying.
 
 ## Troubleshooting
 
-- **Provider not listed:** run `dryft stack list` and `dryft doctor` in the intended
+- **Provider not listed:** run `tdt stack list` and `tdt doctor` in the intended
   workspace to check installation and owned files.
 - **FTS5 unavailable:** use a compatible Python build with SQLite FTS5 support.
   Installing this stack does not replace Python or its SQLite library.
@@ -173,4 +173,4 @@ and restore the recorded originals before retrying.
 - **Expected notes missing:** confirm the notes are approved, rerun indexing and
   search for words present in the title or body.
 - **Provider error:** omit `--provider` to use literal search while resolving the
-  error. [Dryft](https://usedryft.com) does not silently switch providers.
+  error. [ThisDamnThing](https://usethisdamnthing.com) does not silently switch providers.

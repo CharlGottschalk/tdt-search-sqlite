@@ -25,7 +25,7 @@ def main(request):
         db.close()
         return {'protocol_version': 1, 'indexed': len(notes)}
     if not path.exists():
-        raise ValueError('Index missing; run dryft brain index --provider dryft-search-sqlite')
+        raise ValueError('Index missing; run tdt brain index --provider tdt-search-sqlite')
     db = sqlite3.connect(f'file:{path}?mode=ro', uri=True)
     # Query grammar is generated from tokens; user input is never FTS syntax.
     terms = re.findall(r'\w+', request['query'])[:50]

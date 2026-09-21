@@ -1,9 +1,9 @@
 {
   "contract_version": 2,
-  "id": "dryft-search-sqlite",
+  "id": "tdt-search-sqlite",
   "version": "0.1.0",
   "description": "Offline sqlite search over approved brain notes.",
-  "author": "Dryft",
+  "author": "ThisDamnThing",
   "license": "Apache-2.0",
   "skills": [],
   "hooks": [],
@@ -12,7 +12,7 @@
     "docs/usage.md"
   ],
   "compatibility": {
-    "dryft": "0.1",
+    "tdt": "0.1",
     "platforms": [
       "linux-x86_64"
     ],
@@ -30,8 +30,70 @@
   "assets": [
     {
       "path": "assets/provider.py",
-      "sha256": "2e39e41810bf227f3636139b1f95b8a4d3b1128decb7f396854ca1c2cf090ec9",
-      "size": 2199
+      "sha256": "e16903480e5fc303909fb39d78ad9450003d3bb620bfa34d66e6b5b71c9a4751",
+      "size": 2195
     }
-  ]
+  ],
+  "marketplace": {
+    "extension_type": "functionality",
+    "categories": [
+      "search"
+    ],
+    "tags": [
+      "sqlite",
+      "offline"
+    ],
+    "icon": null,
+    "screenshots": [],
+    "documentation_url": "https://github.com/CharlGottschalk/tdt-search-sqlite/blob/main/README.md",
+    "support_url": "https://github.com/CharlGottschalk/tdt-search-sqlite/issues",
+    "supported_agents": [
+      "claude",
+      "codex"
+    ],
+    "dependencies": [
+      {
+        "ref": "thisdamnthing",
+        "name": "ThisDamnThing",
+        "type": "cli",
+        "required": true,
+        "purpose": "Validate and install the stack; provide workspace commands and contracts.",
+        "setup_url": "https://usethisdamnthing.com/docs",
+        "version_constraint": null,
+        "authentication_required": false,
+        "payment_required": false
+      },
+      {
+        "ref": "python",
+        "name": "Python",
+        "type": "runtime",
+        "required": true,
+        "purpose": "Run local helper scripts and providers.",
+        "setup_url": "https://www.python.org/downloads/",
+        "version_constraint": "3.12",
+        "authentication_required": false,
+        "payment_required": false
+      }
+    ],
+    "capabilities": [
+      {
+        "type": "file_read",
+        "scope": "Approved brain notes supplied by the host.",
+        "purpose": "Index and search approved notes.",
+        "data_leaves_machine": "None."
+      },
+      {
+        "type": "file_write",
+        "scope": "Stack-owned local SQLite search index.",
+        "purpose": "Build, replace and remove the search index.",
+        "data_leaves_machine": "None."
+      },
+      {
+        "type": "process",
+        "scope": "Bundled Python brain.search provider.",
+        "purpose": "Run offline SQLite FTS5 indexing and search.",
+        "data_leaves_machine": "None."
+      }
+    ]
+  }
 }
