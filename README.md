@@ -26,7 +26,7 @@ support; installing Python and FTS5 alone does not change that declaration.
 
 ## Release status
 
-Candidate version: **0.1.0**. Canonical source: [CharlGottschalk/tdt-search-sqlite](https://github.com/CharlGottschalk/tdt-search-sqlite).
+Candidate version: **0.1.1**. Canonical source: [CharlGottschalk/tdt-search-sqlite](https://github.com/CharlGottschalk/tdt-search-sqlite).
 The registry commands below are the planned public installation path; production
 listing and installation are still awaiting release verification.
 
