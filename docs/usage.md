@@ -6,12 +6,12 @@ to your layout. Commands without `--workspace` run from the workspace root.
 
 SQLite Search adds ranked full-text search over approved brain notes. It indexes
 note titles and contents with SQLite FTS5 and ranks matches using BM25, with more
-weight given to title matches. [ThisDamnThing](https://usethisdamnthing.com) returns current Markdown evidence for the
+weight given to title matches. [ThisDamnThing](https://usetdt.com) returns current Markdown evidence for the
 matching notes.
 
 ## Requirements
 
-[ThisDamnThing](https://usethisdamnthing.com) must run under Python 3.12, with FTS5 support in that interpreter's
+[ThisDamnThing](https://usetdt.com) must run under Python 3.12, with FTS5 support in that interpreter's
 `sqlite3` module. The provider uses Python's standard library;
 it does not bundle a separate database server, model or third-party Python runtime.
 
@@ -19,15 +19,15 @@ it does not bundle a separate database server, model or third-party Python runti
 
 The provider itself uses portable Python APIs, but the current stack manifest
 lists Linux x86_64 only. Windows support needs a compatible release with an
-updated platform declaration and verification. This is separate from [ThisDamnThing](https://usethisdamnthing.com) core
+updated platform declaration and verification. This is separate from [ThisDamnThing](https://usetdt.com) core
 platform support. The Python/FTS5 dependency check applies on Windows too; use the
-Python executable from [ThisDamnThing](https://usethisdamnthing.com)'s environment.
+Python executable from [ThisDamnThing](https://usetdt.com)'s environment.
 
 ## Dependency setup
 
-[ThisDamnThing](https://usethisdamnthing.com) launches providers with its own Python interpreter. Installing Python 3.12
-alongside a [ThisDamnThing](https://usethisdamnthing.com) installation that uses another version does not switch [ThisDamnThing](https://usethisdamnthing.com)
-to 3.12. Select Python 3.12 when installing [ThisDamnThing](https://usethisdamnthing.com); for an existing installation,
+[ThisDamnThing](https://usetdt.com) launches providers with its own Python interpreter. Installing Python 3.12
+alongside a [ThisDamnThing](https://usetdt.com) installation that uses another version does not switch [ThisDamnThing](https://usetdt.com)
+to 3.12. Select Python 3.12 when installing [ThisDamnThing](https://usetdt.com); for an existing installation,
 check its environment before changing anything. For pipx installations,
 `pipx list` shows the Python version used by each application.
 
@@ -46,7 +46,7 @@ python3.12 --version
 python3.12 -c 'import sqlite3; db = sqlite3.connect(":memory:"); db.execute("CREATE VIRTUAL TABLE probe USING fts5(body)"); print("FTS5 available")'
 ```
 
-Repeat the FTS5 check with the interpreter in [ThisDamnThing](https://usethisdamnthing.com)'s environment if it differs
+Repeat the FTS5 check with the interpreter in [ThisDamnThing](https://usetdt.com)'s environment if it differs
 from `python3.12`. Expect Python 3.12 and `FTS5 available`. The check uses an
 in-memory database and writes no files.
 
@@ -57,7 +57,7 @@ provides the system library, but a custom Python build may use a different SQLit
 If the check fails, use a Python 3.12 build linked to an SQLite build with
 [FTS5 enabled](https://www.sqlite.org/fts5.html#building_fts5_as_part_of_sqlite).
 Installing the SQLite CLI or a pip package does not enable FTS5 in the interpreter
-[ThisDamnThing](https://usethisdamnthing.com) already uses. No database server is needed.
+[ThisDamnThing](https://usetdt.com) already uses. No database server is needed.
 
 ## Install from the registry
 
@@ -81,14 +81,14 @@ If the listing requires prerequisite confirmation, verify it and supply the
 corresponding `--confirm-prerequisite TYPE:REF` flags. Select a particular release
 with `--version VERSION` on both inspection and installation.
 
-Registry installation requires network access. [ThisDamnThing](https://usethisdamnthing.com) downloads and validates the
+Registry installation requires network access. [ThisDamnThing](https://usetdt.com) downloads and validates the
 release, including the provider's size and hash. Installation does not run the
 provider or build an index. When invoked, the provider retains your OS access;
 a subprocess is not a security sandbox.
 
 ## Build the index
 
-Run the following commands from your [ThisDamnThing](https://usethisdamnthing.com) workspace, or add
+Run the following commands from your [ThisDamnThing](https://usetdt.com) workspace, or add
 `--workspace ./workspace` after `tdt` when working elsewhere:
 
 ```sh
@@ -173,4 +173,4 @@ and restore the recorded originals before retrying.
 - **Expected notes missing:** confirm the notes are approved, rerun indexing and
   search for words present in the title or body.
 - **Provider error:** omit `--provider` to use literal search while resolving the
-  error. [ThisDamnThing](https://usethisdamnthing.com) does not silently switch providers.
+  error. [ThisDamnThing](https://usetdt.com) does not silently switch providers.

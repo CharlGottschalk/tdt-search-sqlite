@@ -2,14 +2,14 @@
 
 # SQLite Search
 
-A [ThisDamnThing](https://usethisdamnthing.com) stack that adds ranked full-text search to your approved brain notes.
+A [ThisDamnThing](https://usetdt.com) stack that adds ranked full-text search to your approved brain notes.
 It uses SQLite FTS5 to search titles and contents, giving title matches more
 weight. Indexing and searching run locally without an API key, external service
 or model download. Your Markdown notes remain the source for every result.
 
 ## Dependencies
 
-- [ThisDamnThing](https://usethisdamnthing.com) running under Python 3.12.
+- [ThisDamnThing](https://usetdt.com) running under Python 3.12.
 - SQLite FTS5 support in that Python interpreter's `sqlite3` module.
 
 No separate database server or pip package is required. See
@@ -19,7 +19,7 @@ to Python.
 
 ## Package compatibility
 
-[ThisDamnThing](https://usethisdamnthing.com)'s platform support and this stack package's compatibility are separate.
+[ThisDamnThing](https://usetdt.com)'s platform support and this stack package's compatibility are separate.
 The provider uses Python's standard library, but its current manifest declares
 Linux x86_64 only. A Windows-compatible release must declare and verify Windows
 support; installing Python and FTS5 alone does not change that declaration.
@@ -54,7 +54,7 @@ tdt --workspace ./workspace stack install tdt-search-sqlite --trust-executable S
 
 Review the release, prerequisites and provider code first. Replace `SHA256`
 with the inspected selected-content digest and the workspace path with your own.
-[ThisDamnThing](https://usethisdamnthing.com) downloads the stack from the registry; no source clone is needed.
+[ThisDamnThing](https://usetdt.com) downloads the stack from the registry; no source clone is needed.
 
 See the [usage guide](docs/usage.md) to build the index and start searching.
 
